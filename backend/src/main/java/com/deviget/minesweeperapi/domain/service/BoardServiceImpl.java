@@ -22,11 +22,9 @@ public class BoardServiceImpl implements BoardService {
         int cols = board.getCols();
 
         Set<Integer> minesSet = new HashSet<>();
-        log.info("Init minesSet");
         while (minesSet.size() < mines) {
             minesSet.add((int) (Math.random() * ((rows * cols) - 1)));
         }
-        log.info("Finished minesSet with size: {}", minesSet.size());
 
 
         List<Cell> cells = new ArrayList<>();
@@ -39,7 +37,6 @@ public class BoardServiceImpl implements BoardService {
                         .build());
             }
         }
-        log.info("Set cells init values");
 
         cells.stream().forEach(cell -> {
             long minesAround = getAdjacentCellsStream(cells, cell)
