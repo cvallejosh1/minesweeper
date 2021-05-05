@@ -1,9 +1,9 @@
 package com.deviget.minesweeperapi.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 /**
  * Domain class to represent game object
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Game {
 
     private int id;

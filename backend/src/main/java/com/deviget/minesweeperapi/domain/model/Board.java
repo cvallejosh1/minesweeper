@@ -1,9 +1,10 @@
 package com.deviget.minesweeperapi.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 /**
  * Domain class to represent cell object
@@ -12,12 +13,12 @@ import lombok.RequiredArgsConstructor;
  */
 @Builder
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Board {
 
-    int rows;
+    private int rows;
     private int cols;
     private int mines;
-    private Cell[][] cells;
+    private List<Cell> cells;
 }
