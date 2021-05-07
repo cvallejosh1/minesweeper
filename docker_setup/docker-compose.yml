@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  minesweeper-mysql:
+    image: mysql:5.7
+    container_name: minesweeper-mysql-container
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=r00t
+      - MYSQL_DATABASE=minesweeper
+      - MYSQL_USER=mineuser
+      - MYSQL_PASSWORD=minepassword
+      - MYSQL_ROOT_HOT=%
+    ports:
+      - "3316:3306"
+  minesweeper-api:
+    image: minesweeper-api
+    build: api
+    container_name: minesweeper-api-container
+    environment:
+      - ENV_PROFILE=docker
+    ports:
+      - "8180:8080"
