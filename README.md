@@ -21,4 +21,6 @@ After running locally you can access to the Swagger documentation.
 
 http://localhost:8180/minesweeper/api/swagger-ui/index.html
 
+** The project does not consider security and authentication but it can be implemented
+using a third provider like AWS Cognito.
     
