@@ -3,6 +3,10 @@ package com.deviget.minesweeperapi.controller.api;
 import com.deviget.minesweeperapi.controller.request.GameRequest;
 import com.deviget.minesweeperapi.domain.model.Game;
 import com.deviget.minesweeperapi.domain.service.GameService;
+import com.deviget.minesweeperapi.exceptions.CellNotFoundException;
+import com.deviget.minesweeperapi.exceptions.GameAlreadyFinishedException;
+import com.deviget.minesweeperapi.exceptions.GameNotActiveException;
+import com.deviget.minesweeperapi.exceptions.GameNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -154,5 +158,76 @@ class GameControllerTest {
                 .andReturn();
         assertThat(result).isNotNull();
     }
+
+    @Test
+    @DisplayName("CellNotFoundException occurs when flag cell is invoked")
+    void testFlagCellWhenCellNotFoundExceptionOccurs() throws Exception {
+        Mockito.when(gameService.flagCell(eq(111), eq(1234)))
+                .thenThrow(new CellNotFoundException(111, 1234));
+
+        MvcResult result = mockMvc.perform(patch("/v1/games/111/cells/1234/flag"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message")
+                        .value("Cell with id 1234 and gameId 111 not found"))
+                .andReturn();
+        assertThat(result).isNotNull();
+    }
+
+    @Test
+    @DisplayName("GameAlreadyFinishedException occurs when play game is invoked")
+    void testPlayGameWhenGameAlreadyFinishedExceptionOccurs() throws Exception {
+        Mockito.when(gameService.playGame(eq(111)))
+                .thenThrow(new GameAlreadyFinishedException(111));
+
+        MvcResult result = mockMvc.perform(patch("/v1/games/111/play"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message")
+                        .value("Game with id 111 is already finished"))
+                .andReturn();
+        assertThat(result).isNotNull();
+    }
+
+    @Test
+    @DisplayName("GameNotActiveException occurs when reveal cell is invoked")
+    void testRevealCellWhenGameNotActiveExceptionOccurs() throws Exception {
+        Mockito.when(gameService.revealCell(eq(111), eq(1234)))
+                .thenThrow(new GameNotActiveException(111));
+
+        MvcResult result = mockMvc.perform(patch("/v1/games/111/cells/1234/reveal"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message")
+                        .value("Game with id 111 is not active"))
+                .andReturn();
+        assertThat(result).isNotNull();
+    }
+
+    @Test
+    @DisplayName("GameNotFoundException occurs when get game by id is invoked")
+    void testRevealCellWhenGameNoFoundExceptionOccurs() throws Exception {
+        Mockito.when(gameService.getGameById(eq(111)))
+                .thenThrow(new GameNotFoundException(111));
+
+        MvcResult result = mockMvc.perform(get("/v1/games/111"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message")
+                        .value("Game with id 111 not found"))
+                .andReturn();
+        assertThat(result).isNotNull();
+    }
+
+    @Test
+    @DisplayName("Any RuntimeException occurs when get game by id is invoked")
+    void testPlayCellWhenRuntimeExceptionOccurs() throws Exception {
+        Mockito.when(gameService.playGame(eq(111)))
+                .thenThrow(new RuntimeException("message error"));
+
+        MvcResult result = mockMvc.perform(patch("/v1/games/111/play"))
+                .andExpect(status().is5xxServerError())
+                .andExpect(jsonPath("$.message")
+                        .value("message error"))
+                .andReturn();
+        assertThat(result).isNotNull();
+    }
+
 
 }

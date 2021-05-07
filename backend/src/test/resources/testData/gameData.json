@@ -1,0 +1,155 @@
+{
+    "id": 22,
+    "board": {
+      "rows": 4,
+      "cols": 4,
+      "mines": 2,
+      "cells": [
+        {
+          "id": 1310,
+          "x": 0,
+          "y": 0,
+          "mined": false,
+          "minesAround": 0,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1311,
+          "x": 0,
+          "y": 1,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1312,
+          "x": 0,
+          "y": 2,
+          "mined": true,
+          "minesAround": 0,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1313,
+          "x": 0,
+          "y": 3,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1314,
+          "x": 1,
+          "y": 0,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1315,
+          "x": 1,
+          "y": 1,
+          "mined": false,
+          "minesAround": 2,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1316,
+          "x": 1,
+          "y": 2,
+          "mined": false,
+          "minesAround": 2,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1317,
+          "x": 1,
+          "y": 3,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1318,
+          "x": 2,
+          "y": 0,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1319,
+          "x": 2,
+          "y": 1,
+          "mined": true,
+          "minesAround": 0,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1320,
+          "x": 2,
+          "y": 2,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1321,
+          "x": 2,
+          "y": 3,
+          "mined": false,
+          "minesAround": 0,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1322,
+          "x": 3,
+          "y": 0,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1323,
+          "x": 3,
+          "y": 1,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1324,
+          "x": 3,
+          "y": 2,
+          "mined": false,
+          "minesAround": 1,
+          "revealed": false,
+          "flagged": false
+        },
+        {
+          "id": 1325,
+          "x": 3,
+          "y": 3,
+          "mined": false,
+          "minesAround": 0,
+          "revealed": false,
+          "flagged": false
+        }
+      ]
+    },
+    "status": "PLAYING"
+}

@@ -4,11 +4,11 @@ import com.deviget.minesweeperapi.domain.model.Board;
 import com.deviget.minesweeperapi.domain.model.Cell;
 import com.deviget.minesweeperapi.domain.model.Game;
 import com.deviget.minesweeperapi.domain.model.GameStatus;
+import com.deviget.minesweeperapi.exceptions.BoardNotFoundException;
 import com.deviget.minesweeperapi.exceptions.CellNotFoundException;
 import com.deviget.minesweeperapi.exceptions.GameAlreadyFinishedException;
 import com.deviget.minesweeperapi.exceptions.GameNotActiveException;
 import com.deviget.minesweeperapi.exceptions.GameNotFoundException;
-import com.deviget.minesweeperapi.repository.CellRepository;
 import com.deviget.minesweeperapi.repository.GameRepository;
 import com.deviget.minesweeperapi.repository.entity.BoardEntity;
 import com.deviget.minesweeperapi.repository.entity.CellEntity;
@@ -73,8 +73,8 @@ public class GameServiceImpl implements GameService {
         GameEntity gameEntity = this.gameRepository.findById(gameId)
                 .orElseThrow(() -> new GameNotFoundException(gameId));
         String gameStatus = gameEntity.getStatus();
-        if (gameStatus.equals(GameStatus.FINISHED_LOST)
-                || gameStatus.equals(GameStatus.FINISHED_WON) ) {
+        if (gameStatus.equals(GameStatus.FINISHED_LOST.name())
+                || gameStatus.equals(GameStatus.FINISHED_WON.name()) ) {
             throw new GameAlreadyFinishedException(gameId);
         }
         gameEntity.setStatus(GameStatus.PAUSED.name());
@@ -87,8 +87,8 @@ public class GameServiceImpl implements GameService {
         GameEntity gameEntity = this.gameRepository.findById(gameId)
                 .orElseThrow(() -> new GameNotFoundException(gameId));
         String gameStatus = gameEntity.getStatus();
-        if (gameStatus.equals(GameStatus.FINISHED_LOST)
-                || gameStatus.equals(GameStatus.FINISHED_WON) ) {
+        if (gameStatus.equals(GameStatus.FINISHED_LOST.name())
+                || gameStatus.equals(GameStatus.FINISHED_WON.name()) ) {
             throw new GameAlreadyFinishedException(gameId);
         }
         gameEntity.setStatus(GameStatus.PLAYING.name());
@@ -104,6 +104,8 @@ public class GameServiceImpl implements GameService {
             CellEntity cellEntity = filterCellsById(boardEntity.getCells(), gameId, cellId);
             revealCellsAndUpdateStatus(boardEntity.getCells(), gameEntity, cellEntity);
             gameRepository.save(gameEntity);
+        } else {
+            throw new BoardNotFoundException(gameId);
         }
         return toGame(gameEntity);
     }
@@ -154,6 +156,8 @@ public class GameServiceImpl implements GameService {
             CellEntity cellEntity = filterCellsById(boardEntity.getCells(), gameId, cellId);
             cellEntity.setFlagged(true);
             gameRepository.save(gameEntity);
+        } else {
+            throw new BoardNotFoundException(gameId);
         }
         return true;
     }
