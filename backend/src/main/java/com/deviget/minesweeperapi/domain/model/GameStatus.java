@@ -5,5 +5,5 @@ package com.deviget.minesweeperapi.domain.model;
  *
  */
 public enum GameStatus {
-    CREATED, PLAYING, PAUSED, FINISHED_WON, FINISHED_LOOSE
+    CREATED, PLAYING, PAUSED, FINISHED_WON, FINISHED_LOST
 }

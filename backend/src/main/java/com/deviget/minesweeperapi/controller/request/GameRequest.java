@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GameRequest {
 
+    private String userId;
     private int rows;
     private int cols;
     private int mines;

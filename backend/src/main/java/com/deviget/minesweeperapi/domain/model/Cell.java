@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cell {
 
+    private int id;
     private int x;
     private int y;
     private boolean mined;
