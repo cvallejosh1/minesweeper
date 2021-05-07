@@ -34,3 +34,4 @@ build/
 
 ### Maven ###
 .mvn
+.DS_Store
