@@ -1,7 +1,7 @@
 # MineSweeper REST API
 Repository for minesweeper challenge
 
-The project is based on Spring Boot 2.x and MySQL database.
+The project is based on Spring Boot 2.x, Java 11 and MySQL database.
 
 It provides methods to interact with the minesweeper game.
 
