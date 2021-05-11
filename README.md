@@ -30,8 +30,12 @@ The API is also available on AWS in the following URL you can access the API doc
 http://ec2-18-217-182-106.us-east-2.compute.amazonaws.com/minesweeper/api/swagger-ui.html
 
 In the cloud version the API is built in a docker container and then deployed into AWS
-using AWS ECR and AWS ECS. The database is MySQL using AWS RDS and using AWS Secrets Manager 
-for the DB credentials. The profile aws is the one related to AWS configuration.
+using AWS ECR and AWS ECS. 
+
+The database is MySQL using AWS RDS (t2.micro) and using AWS Secrets Manager 
+for the DB credentials. 
+
+The aws profile is the one related to AWS configuration.
 
 ** The project does not consider security and authentication but it can be implemented
 using a third provider like AWS Cognito.
